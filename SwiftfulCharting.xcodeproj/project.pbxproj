@@ -23,6 +23,8 @@
 		0A02AA832836F39000E3BB53 /* AvailableCurrenciesAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableCurrenciesAPIModel.swift; sourceTree = "<group>"; };
 		0A02AA852836F39E00E3BB53 /* HistoricalCurrencyDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCurrencyDataModel.swift; sourceTree = "<group>"; };
 		0A02AA89283E9B0500E3BB53 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		0A02AA8B283EF41D00E3BB53 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		0A02AA8C283EF49900E3BB53 /* SwiftfuSwiftfulChartingCharting-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "SwiftfuSwiftfulChartingCharting-Info.plist"; sourceTree = "<group>"; };
 		EF86E91F2835A89300B52782 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 		EF8BDB9628359994004E24CB /* SwiftfulCharting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftfulCharting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF8BDB9928359994004E24CB /* SwiftfulChartingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftfulChartingApp.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				0A02AA89283E9B0500E3BB53 /* APIManager.swift */,
+				0A02AA8B283EF41D00E3BB53 /* Config.xcconfig */,
 			);
 			path = APIManager;
 			sourceTree = "<group>";
@@ -74,6 +77,7 @@
 		EF8BDB8D28359993004E24CB = {
 			isa = PBXGroup;
 			children = (
+				0A02AA8C283EF49900E3BB53 /* SwiftfuSwiftfulChartingCharting-Info.plist */,
 				EF8BDB9828359994004E24CB /* SwiftfulCharting */,
 				EF8BDB9728359994004E24CB /* Products */,
 			);
@@ -320,6 +324,7 @@
 				DEVELOPMENT_TEAM = T3SR62DCTW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SwiftfuSwiftfulChartingCharting-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -349,6 +354,7 @@
 				DEVELOPMENT_TEAM = T3SR62DCTW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SwiftfuSwiftfulChartingCharting-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

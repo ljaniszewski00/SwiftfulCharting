@@ -8,10 +8,7 @@
 import Foundation
 
 class APIManager {
-    private let headers = [
-        "X-RapidAPI-Host": "currency-converter5.p.rapidapi.com",
-        "X-RapidAPI-Key": "364266a2ebmshadfb6272b4040c1p1280afjsn69a788be2723"
-    ]
+    private let headers: [String: String]
     
     enum APICallTypes {
         case availableCurrencies
@@ -22,7 +19,19 @@ class APIManager {
         APIManager()
     }
     
-    private init() {}
+    private init() {
+        if let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String {
+            headers = [
+                "X-RapidAPI-Host": "currency-converter5.p.rapidapi.com",
+                "X-RapidAPI-Key": apiKey
+            ]
+        } else {
+            headers = [
+                "X-RapidAPI-Host": "currency-converter5.p.rapidapi.com",
+                "X-RapidAPI-Key": "NO-KEY"
+            ]
+        }
+    }
     
     private func buildRequestFor(_ apiCallType: APICallTypes, date: String = "2020-01-20", fromCurrency: String = "EUR", amount: Double = 1.0, toCurrency: String = "GBP") -> NSMutableURLRequest {
         let request: NSMutableURLRequest

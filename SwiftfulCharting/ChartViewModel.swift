@@ -8,30 +8,24 @@
 import Foundation
 
 class ChartViewModel: ObservableObject {
-    @Published var choosenCurrency: String = ""
+    @Published var fromCurrency: String = "EUR"
+    @Published var amount: Double = 1.0
+    @Published var toCurrency: String = "USD"
     var currencies: [String] = ["PLN", "USD", "CAD", "SOT"]
     
-    func fetchData() {
-        let headers = [
-            "X-RapidAPI-Host": "currency-converter5.p.rapidapi.com",
-            "X-RapidAPI-Key": "8d3c69b775mshcc24b34f5cf077dp1dea3bjsn71f7afa7ced8"
-        ]
-
-        let request = NSMutableURLRequest(url: NSURL(string: "https://currency-converter5.p.rapidapi.com/currency/convert?format=json&from=AUD&to=CAD&amount=1")! as URL,
-                                                cachePolicy: .useProtocolCachePolicy,
-                                            timeoutInterval: 10.0)
-        request.httpMethod = "GET"
-        request.allHTTPHeaderFields = headers
-
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-            if (error != nil) {
-                print(error)
-            } else {
-            }
-        })
-
-        dataTask.resume()
+    @Published var availableCurrencies: AvailableCurrenciesModel? = nil
+    @Published var historicalCurrencyData: HistoricalCurrencyDataModel? = nil
+    
+    func fetchAvailableCurrenciesData() async {
+        Task.init {
+            availableCurrencies = try await APIManager.shared.getAvailableCurrencies()
+        }
+    }
+    
+    func fetchHistoricalCurrencyData() async {
+        Task.init {
+            historicalCurrencyData = try await APIManager.shared.getHistoricalCurrencyData(fromCurrency: fromCurrency, amount: amount, toCurrency: toCurrency)
+        }
     }
     
 }

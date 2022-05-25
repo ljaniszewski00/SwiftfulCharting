@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A02AA842836F39000E3BB53 /* AvailableCurrenciesAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02AA832836F39000E3BB53 /* AvailableCurrenciesAPIModel.swift */; };
-		0A02AA862836F39E00E3BB53 /* CurrencyConverterAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02AA852836F39E00E3BB53 /* CurrencyConverterAPIModel.swift */; };
+		0A02AA862836F39E00E3BB53 /* HistoricalCurrencyDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02AA852836F39E00E3BB53 /* HistoricalCurrencyDataModel.swift */; };
+		0A02AA8A283E9B0500E3BB53 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02AA89283E9B0500E3BB53 /* APIManager.swift */; };
 		EF86E9202835A89300B52782 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF86E91F2835A89300B52782 /* ChartViewModel.swift */; };
 		EF8BDB9A28359994004E24CB /* SwiftfulChartingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8BDB9928359994004E24CB /* SwiftfulChartingApp.swift */; };
 		EF8BDB9C28359994004E24CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8BDB9B28359994004E24CB /* ContentView.swift */; };
@@ -20,7 +21,8 @@
 
 /* Begin PBXFileReference section */
 		0A02AA832836F39000E3BB53 /* AvailableCurrenciesAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableCurrenciesAPIModel.swift; sourceTree = "<group>"; };
-		0A02AA852836F39E00E3BB53 /* CurrencyConverterAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterAPIModel.swift; sourceTree = "<group>"; };
+		0A02AA852836F39E00E3BB53 /* HistoricalCurrencyDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCurrencyDataModel.swift; sourceTree = "<group>"; };
+		0A02AA89283E9B0500E3BB53 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		EF86E91F2835A89300B52782 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 		EF8BDB9628359994004E24CB /* SwiftfulCharting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftfulCharting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF8BDB9928359994004E24CB /* SwiftfulChartingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftfulChartingApp.swift; sourceTree = "<group>"; };
@@ -46,9 +48,27 @@
 			isa = PBXGroup;
 			children = (
 				0A02AA832836F39000E3BB53 /* AvailableCurrenciesAPIModel.swift */,
-				0A02AA852836F39E00E3BB53 /* CurrencyConverterAPIModel.swift */,
+				0A02AA852836F39E00E3BB53 /* HistoricalCurrencyDataModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		0A02AA87283E9AE100E3BB53 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EF8BDBAD28359DFF004E24CB /* ChartView.swift */,
+				EF8BDBAB28359DF8004E24CB /* SettingsView.swift */,
+				EF8BDB9B28359994004E24CB /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0A02AA88283E9AF100E3BB53 /* APIManager */ = {
+			isa = PBXGroup;
+			children = (
+				0A02AA89283E9B0500E3BB53 /* APIManager.swift */,
+			);
+			path = APIManager;
 			sourceTree = "<group>";
 		};
 		EF8BDB8D28359993004E24CB = {
@@ -70,13 +90,12 @@
 		EF8BDB9828359994004E24CB /* SwiftfulCharting */ = {
 			isa = PBXGroup;
 			children = (
+				0A02AA88283E9AF100E3BB53 /* APIManager */,
+				0A02AA87283E9AE100E3BB53 /* Views */,
 				0A02AA822836F22800E3BB53 /* Models */,
 				EF8BDB9928359994004E24CB /* SwiftfulChartingApp.swift */,
-				EF8BDB9B28359994004E24CB /* ContentView.swift */,
 				EF8BDB9D28359995004E24CB /* Assets.xcassets */,
 				EF8BDB9F28359995004E24CB /* Preview Content */,
-				EF8BDBAB28359DF8004E24CB /* SettingsView.swift */,
-				EF8BDBAD28359DFF004E24CB /* ChartView.swift */,
 				EF86E91F2835A89300B52782 /* ChartViewModel.swift */,
 			);
 			path = SwiftfulCharting;
@@ -160,11 +179,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A02AA8A283E9B0500E3BB53 /* APIManager.swift in Sources */,
 				EF86E9202835A89300B52782 /* ChartViewModel.swift in Sources */,
 				EF8BDBAC28359DF8004E24CB /* SettingsView.swift in Sources */,
 				EF8BDB9C28359994004E24CB /* ContentView.swift in Sources */,
 				EF8BDB9A28359994004E24CB /* SwiftfulChartingApp.swift in Sources */,
-				0A02AA862836F39E00E3BB53 /* CurrencyConverterAPIModel.swift in Sources */,
+				0A02AA862836F39E00E3BB53 /* HistoricalCurrencyDataModel.swift in Sources */,
 				EF8BDBAE28359DFF004E24CB /* ChartView.swift in Sources */,
 				0A02AA842836F39000E3BB53 /* AvailableCurrenciesAPIModel.swift in Sources */,
 			);

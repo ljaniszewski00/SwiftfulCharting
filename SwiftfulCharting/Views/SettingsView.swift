@@ -23,7 +23,7 @@ struct SettingsView: View {
                 NavigationLink(destination: ChartView().environmentObject(chartViewModel), isActive: $switchToChartView) {
                     Button(action: {
                         withAnimation() {
-                            chartViewModel.choosenCurrency = currency
+                            chartViewModel.fromCurrency = currency
                             switchToChartView = true
                         }
                     }, label: {
@@ -31,6 +31,9 @@ struct SettingsView: View {
                     })
                 }
             }
+        }
+        .task {
+            await chartViewModel.fetchAvailableCurrenciesData()
         }
     }
 }

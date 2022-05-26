@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/users/Documents/SwiftfulCharting/SwiftfulCharting.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

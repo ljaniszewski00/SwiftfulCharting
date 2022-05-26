@@ -6,31 +6,51 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ChartViewModel: ObservableObject {
-    @Published var date: Date = Date()
+    @Published var startingDate: Date = Date()
+    @Published var endingDate: Date = Date()
     @Published var fromCurrency: String = "EUR"
-    @Published var amount: Double = 1.0
+    @Published var amount: String = "1.0"
     @Published var toCurrency: String = "USD"
     
-    @Published var availableCurrencies = [String: String]()
-    @Published var historicalCurrencyData: HistoricalCurrencyDataModel? = nil
+    @Published var availableCurrencies = [String]()
+    @Published var historicalCurrencyData = [HistoricalCurrencyDataModel]()
     
-    var stringDate: String {
+    var historicalCurrencyChartData: [String: Double] {
+        DataManager.shared.getHistoricalCurrencyData(historicalCurrencyDataModels: historicalCurrencyData)
+    }
+    
+    func getDateFrom(date: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.date(from: date)!
+    }
+    
+    func convertDateToStringDate(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.string(from: date)
     }
     
     func fetchAvailableCurrenciesData() async {
-        Task.init {
-            availableCurrencies = try await APIManager.shared.getAvailableCurrencies().currencies
+        DispatchQueue.main.async { [weak self] in
+            Task.init {
+                self?.availableCurrencies = DataManager.shared.getAvailableCurrencies(availableCurrenciesModel: try await APIManager.shared.getAvailableCurrencies())
+            }
         }
     }
     
     func fetchHistoricalCurrencyData() async {
-        Task.init {
-            historicalCurrencyData = try await APIManager.shared.getHistoricalCurrencyData(date: stringDate, fromCurrency: fromCurrency, amount: amount, toCurrency: toCurrency)
+        DispatchQueue.main.async { [weak self] in
+            Task.init {
+                let dayDurationInSeconds: TimeInterval = 60*60*24
+                for date in stride(from: self!.startingDate, to: self!.endingDate, by: dayDurationInSeconds) {
+                    self?.historicalCurrencyData.append(try await APIManager.shared.getHistoricalCurrencyData(date: self!.convertDateToStringDate(date: date), fromCurrency: self!.fromCurrency, amount: self!.amount, toCurrency: self!.toCurrency))
+                }
+                
+            }
         }
     }
     

@@ -33,7 +33,7 @@ class APIManager {
         }
     }
     
-    private func buildRequestFor(_ apiCallType: APICallTypes, date: String = "2020-01-20", fromCurrency: String = "EUR", amount: Double = 1.0, toCurrency: String = "GBP") -> NSMutableURLRequest {
+    private func buildRequestFor(_ apiCallType: APICallTypes, date: String = "2020-01-20", fromCurrency: String = "EUR", amount: String = "1.0", toCurrency: String = "GBP") -> NSMutableURLRequest {
         let request: NSMutableURLRequest
         
         switch apiCallType {
@@ -55,6 +55,7 @@ class APIManager {
     private func makeAPICall(request: NSMutableURLRequest) async throws -> Data {
         let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
         
+        print(response)
         guard (response as? HTTPURLResponse)?.statusCode == 200 else {
             fatalError("Fatal error")
         }
@@ -69,7 +70,7 @@ class APIManager {
         return result
     }
     
-    func getHistoricalCurrencyData(date: String, fromCurrency: String, amount: Double, toCurrency: String) async throws -> HistoricalCurrencyDataModel {
+    func getHistoricalCurrencyData(date: String = "2020-01-20", fromCurrency: String = "EUR", amount: String = "1.0", toCurrency: String = "GBP") async throws -> HistoricalCurrencyDataModel {
         let request = buildRequestFor(.historicalCurrencyData, date: date, fromCurrency: fromCurrency, amount: amount, toCurrency: toCurrency)
         let historicalCurrencyData = try await makeAPICall(request: request)
         let result = try JSONDecoder().decode(HistoricalCurrencyDataModel.self, from: historicalCurrencyData)
@@ -79,7 +80,6 @@ class APIManager {
 }
 
 extension APIManager: NSCopying {
-
     func copy(with zone: NSZone? = nil) -> Any {
         return self
     }

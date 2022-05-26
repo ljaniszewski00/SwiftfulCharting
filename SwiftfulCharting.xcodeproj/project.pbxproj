@@ -10,6 +10,10 @@
 		0A02AA842836F39000E3BB53 /* AvailableCurrenciesAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02AA832836F39000E3BB53 /* AvailableCurrenciesAPIModel.swift */; };
 		0A02AA862836F39E00E3BB53 /* HistoricalCurrencyDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02AA852836F39E00E3BB53 /* HistoricalCurrencyDataModel.swift */; };
 		0A02AA8A283E9B0500E3BB53 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02AA89283E9B0500E3BB53 /* APIManager.swift */; };
+		0A02AA8F283F94ED00E3BB53 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02AA8E283F94ED00E3BB53 /* InfoView.swift */; };
+		0A02AA97283F9FF700E3BB53 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 0A02AA96283F9FF700E3BB53 /* SwiftUICharts */; };
+		0ACE856028402820006782F2 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE855F28402820006782F2 /* DataManager.swift */; };
+		0ACE856328402C17006782F2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE856228402C17006782F2 /* Extensions.swift */; };
 		EF86E9202835A89300B52782 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF86E91F2835A89300B52782 /* ChartViewModel.swift */; };
 		EF8BDB9A28359994004E24CB /* SwiftfulChartingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8BDB9928359994004E24CB /* SwiftfulChartingApp.swift */; };
 		EF8BDB9C28359994004E24CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8BDB9B28359994004E24CB /* ContentView.swift */; };
@@ -25,6 +29,9 @@
 		0A02AA89283E9B0500E3BB53 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		0A02AA8B283EF41D00E3BB53 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		0A02AA8C283EF49900E3BB53 /* SwiftfuSwiftfulChartingCharting-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "SwiftfuSwiftfulChartingCharting-Info.plist"; sourceTree = "<group>"; };
+		0A02AA8E283F94ED00E3BB53 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		0ACE855F28402820006782F2 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		0ACE856228402C17006782F2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EF86E91F2835A89300B52782 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 		EF8BDB9628359994004E24CB /* SwiftfulCharting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftfulCharting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF8BDB9928359994004E24CB /* SwiftfulChartingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftfulChartingApp.swift; sourceTree = "<group>"; };
@@ -40,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A02AA97283F9FF700E3BB53 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,17 +69,27 @@
 				EF8BDBAD28359DFF004E24CB /* ChartView.swift */,
 				EF8BDBAB28359DF8004E24CB /* SettingsView.swift */,
 				EF8BDB9B28359994004E24CB /* ContentView.swift */,
+				0A02AA8E283F94ED00E3BB53 /* InfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		0A02AA88283E9AF100E3BB53 /* APIManager */ = {
+		0A02AA88283E9AF100E3BB53 /* API */ = {
 			isa = PBXGroup;
 			children = (
 				0A02AA89283E9B0500E3BB53 /* APIManager.swift */,
 				0A02AA8B283EF41D00E3BB53 /* Config.xcconfig */,
+				0ACE855F28402820006782F2 /* DataManager.swift */,
 			);
-			path = APIManager;
+			path = API;
+			sourceTree = "<group>";
+		};
+		0ACE856128402C09006782F2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0ACE856228402C17006782F2 /* Extensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		EF8BDB8D28359993004E24CB = {
@@ -94,7 +112,8 @@
 		EF8BDB9828359994004E24CB /* SwiftfulCharting */ = {
 			isa = PBXGroup;
 			children = (
-				0A02AA88283E9AF100E3BB53 /* APIManager */,
+				0ACE856128402C09006782F2 /* Utils */,
+				0A02AA88283E9AF100E3BB53 /* API */,
 				0A02AA87283E9AE100E3BB53 /* Views */,
 				0A02AA822836F22800E3BB53 /* Models */,
 				EF8BDB9928359994004E24CB /* SwiftfulChartingApp.swift */,
@@ -129,6 +148,9 @@
 			dependencies = (
 			);
 			name = SwiftfuSwiftfulChartingCharting;
+			packageProductDependencies = (
+				0A02AA96283F9FF700E3BB53 /* SwiftUICharts */,
+			);
 			productName = SwiftfulCharting;
 			productReference = EF8BDB9628359994004E24CB /* SwiftfulCharting.app */;
 			productType = "com.apple.product-type.application";
@@ -157,6 +179,9 @@
 				Base,
 			);
 			mainGroup = EF8BDB8D28359993004E24CB;
+			packageReferences = (
+				0A02AA95283F9FF700E3BB53 /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = EF8BDB9728359994004E24CB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -184,12 +209,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A02AA8A283E9B0500E3BB53 /* APIManager.swift in Sources */,
+				0ACE856028402820006782F2 /* DataManager.swift in Sources */,
 				EF86E9202835A89300B52782 /* ChartViewModel.swift in Sources */,
 				EF8BDBAC28359DF8004E24CB /* SettingsView.swift in Sources */,
 				EF8BDB9C28359994004E24CB /* ContentView.swift in Sources */,
 				EF8BDB9A28359994004E24CB /* SwiftfulChartingApp.swift in Sources */,
 				0A02AA862836F39E00E3BB53 /* HistoricalCurrencyDataModel.swift in Sources */,
 				EF8BDBAE28359DFF004E24CB /* ChartView.swift in Sources */,
+				0A02AA8F283F94ED00E3BB53 /* InfoView.swift in Sources */,
+				0ACE856328402C17006782F2 /* Extensions.swift in Sources */,
 				0A02AA842836F39000E3BB53 /* AvailableCurrenciesAPIModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +423,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0A02AA95283F9FF700E3BB53 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0A02AA96283F9FF700E3BB53 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A02AA95283F9FF700E3BB53 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EF8BDB8E28359993004E24CB /* Project object */;
 }

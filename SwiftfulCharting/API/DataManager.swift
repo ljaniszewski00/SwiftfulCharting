@@ -17,7 +17,7 @@ class DataManager {
     func getAvailableCurrencies(availableCurrenciesModel: AvailableCurrenciesModel) -> [String] {
         var availableCurrencies = [String]()
         for availableCurrency in availableCurrenciesModel.currencies {
-            availableCurrencies.append(availableCurrency.key + availableCurrency.value)
+            availableCurrencies.append(availableCurrency.key + " - " + availableCurrency.value)
         }
         return availableCurrencies.sorted()
     }

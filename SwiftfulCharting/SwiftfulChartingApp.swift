@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct SwiftfulChartingApp: App {
+    @StateObject private var accentColorManager = AccentColorManager()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(accentColorManager)
+                .accentColor(Color(uiColor: accentColorManager.accentColor.rawValue))
         }
     }
 }

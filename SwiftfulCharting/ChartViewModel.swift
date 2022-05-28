@@ -19,9 +19,10 @@ class ChartViewModel: ObservableObject {
     @Published var historicalCurrencyData = [HistoricalCurrencyDataModel]()
     
     @Published var showInfoView: Bool = false
+    @Published var showContentViewColorSheet: Bool = false
     @Published var showSettingsView: Bool = false
-    @Published var showChartViewSettingsSheet: Bool = false
     @Published var showChartView: Bool = false
+    @Published var showChartViewSettingsView: Bool = false
     @Published var showContentView: Bool = false
     
     var historicalCurrencyChartData: [String: Double] {

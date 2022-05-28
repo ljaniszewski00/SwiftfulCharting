@@ -11,6 +11,8 @@ struct ContentView: View {
     @StateObject private var chartViewModel = ChartViewModel()
     @EnvironmentObject private var accentColorManager: AccentColorManager
     
+    @Environment(\.colorScheme) var colorScheme
+    
     private let screenWidth: CGFloat = UIScreen.main.bounds.width
     private let screenHeight: CGFloat = UIScreen.main.bounds.height
     
@@ -37,8 +39,8 @@ struct ContentView: View {
                                     }
                                 }, label: {
                                     Text("Start")
-                                        .foregroundColor(.white)
                                         .bold()
+                                        .foregroundColor(colorScheme == .light ? .white : .accentColor)
                                 })
                                 .frame(width: screenWidth * 0.9, height: screenHeight * 0.06)
                                 .background {
@@ -57,7 +59,6 @@ struct ContentView: View {
                                     }
                                 }, label: {
                                     Text("About The App")
-                                        .foregroundColor(.white)
                                         .bold()
                                 })
                                 .frame(width: screenWidth * 0.9, height: screenHeight * 0.06)
@@ -72,10 +73,61 @@ struct ContentView: View {
                     .padding(.bottom, screenHeight * 0.05)
                 }
                 .navigationTitle("SwiftfulCharting")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink(destination: buildColorPickerView(), isActive: $chartViewModel.showContentViewColorSheet) {
+                            Button(action: {
+                                withAnimation {
+                                    chartViewModel.showContentViewColorSheet = true
+                                }
+                            }, label: {
+                                Image(systemName: "gearshape.fill")
+                            })
+                        }
+                    }
+                }
                 .padding()
             }
             .task {
                 await chartViewModel.fetchAvailableCurrenciesData()
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func buildColorPickerView() -> some View {
+        ScrollView(.vertical) {
+            Text("Adjust Theme Color")
+                .font(.largeTitle)
+                .bold()
+                .padding(.bottom, 40)
+            
+            LazyVGrid(columns: [GridItem(.flexible()),
+                                GridItem(.flexible()),
+                                GridItem(.flexible())]) {
+                ForEach(accentColorManager.availableColors, id: \.self) { color in
+                    if accentColorManager.accentColor == color {
+                        ZStack(alignment: .bottomTrailing) {
+                            Circle()
+                                .foregroundColor(Color(uiColor: color.rawValue))
+                                .frame(width: 80, height: 80)
+                                .onTapGesture {
+                                    accentColorManager.accentColor = color
+                                }
+                            Image(systemName: "checkmark.circle.fill")
+                                .resizable()
+                                .foregroundColor(colorScheme == .light ? .black : .white)
+                                .frame(width: 30, height: 30)
+                        }
+                    } else {
+                        Circle()
+                            .foregroundColor(Color(uiColor: color.rawValue))
+                            .frame(width: 80, height: 80)
+                            .onTapGesture {
+                                accentColorManager.accentColor = color
+                            }
+                    }
+                }
             }
         }
     }

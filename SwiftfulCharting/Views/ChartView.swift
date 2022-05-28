@@ -12,6 +12,8 @@ struct ChartView: View {
     @EnvironmentObject private var chartViewModel: ChartViewModel
     @EnvironmentObject private var accentColorManager: AccentColorManager
     
+    @Environment(\.colorScheme) var colorScheme
+    
     private let screenWidth: CGFloat = UIScreen.main.bounds.width
     private let screenHeight: CGFloat = UIScreen.main.bounds.height
     
@@ -57,20 +59,17 @@ struct ChartView: View {
                 }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {
-                            withAnimation {
-                                chartViewModel.showChartViewSettingsSheet = true
-                            }
-                        }, label: {
-                            Image(systemName: "slider.horizontal.3")
-                        })
+                        NavigationLink(destination: buildSettingsSheetView(), isActive: $chartViewModel.showChartViewSettingsView) {
+                            Button(action: {
+                                withAnimation {
+                                    chartViewModel.showChartViewSettingsView = true
+                                }
+                            }, label: {
+                                Image(systemName: "slider.horizontal.3")
+                            })
+                        }
                     }
                 }
-                .sheet(isPresented: $chartViewModel.showChartViewSettingsSheet, onDismiss: {
-                    chartViewModel.showChartViewSettingsSheet = false
-                }, content: {
-                    buildSettingsSheetView()
-                })
             }
         }
     }
@@ -175,11 +174,11 @@ struct ChartView: View {
                 
                 Button(action: {
                     withAnimation() {
-                        chartViewModel.showChartViewSettingsSheet = false
+                        chartViewModel.showChartViewSettingsView = false
                     }
                 }, label: {
                     Text("Update")
-                        .foregroundColor(.white)
+                        .foregroundColor(colorScheme == .light ? .white : .accentColor)
                         .bold()
                 })
                 .frame(width: screenWidth * 0.9, height: screenHeight * 0.06)

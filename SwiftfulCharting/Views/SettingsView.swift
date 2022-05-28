@@ -11,6 +11,8 @@ struct SettingsView: View {
     @EnvironmentObject private var chartViewModel: ChartViewModel
     @EnvironmentObject private var accentColorManager: AccentColorManager
     
+    @Environment(\.colorScheme) var colorScheme
+    
     private let screenWidth: CGFloat = UIScreen.main.bounds.width
     private let screenHeight: CGFloat = UIScreen.main.bounds.height
     
@@ -113,7 +115,7 @@ struct SettingsView: View {
                     }
                 }, label: {
                     Text("Generate Chart")
-                        .foregroundColor(.white)
+                        .foregroundColor(colorScheme == .light ? .white : .accentColor)
                         .bold()
                 })
                 .frame(width: screenWidth * 0.9, height: screenHeight * 0.06)

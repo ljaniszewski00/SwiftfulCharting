@@ -15,6 +15,7 @@
 		0ACE856028402820006782F2 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE855F28402820006782F2 /* DataManager.swift */; };
 		0ACE856328402C17006782F2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE856228402C17006782F2 /* Extensions.swift */; };
 		0ACE8565284232AA006782F2 /* AccentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE8564284232AA006782F2 /* AccentColorManager.swift */; };
+		0ACE85672843BA4A006782F2 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE85662843BA4A006782F2 /* Functions.swift */; };
 		EF86E9202835A89300B52782 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF86E91F2835A89300B52782 /* ChartViewModel.swift */; };
 		EF8BDB9A28359994004E24CB /* SwiftfulChartingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8BDB9928359994004E24CB /* SwiftfulChartingApp.swift */; };
 		EF8BDB9C28359994004E24CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8BDB9B28359994004E24CB /* ContentView.swift */; };
@@ -34,6 +35,7 @@
 		0ACE855F28402820006782F2 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		0ACE856228402C17006782F2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0ACE8564284232AA006782F2 /* AccentColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentColorManager.swift; sourceTree = "<group>"; };
+		0ACE85662843BA4A006782F2 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		EF86E91F2835A89300B52782 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 		EF8BDB9628359994004E24CB /* SwiftfulCharting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftfulCharting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF8BDB9928359994004E24CB /* SwiftfulChartingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftfulChartingApp.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			children = (
 				0ACE856228402C17006782F2 /* Extensions.swift */,
 				0ACE8564284232AA006782F2 /* AccentColorManager.swift */,
+				0ACE85662843BA4A006782F2 /* Functions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				EF86E9202835A89300B52782 /* ChartViewModel.swift in Sources */,
 				0ACE8565284232AA006782F2 /* AccentColorManager.swift in Sources */,
 				EF8BDBAC28359DF8004E24CB /* SettingsView.swift in Sources */,
+				0ACE85672843BA4A006782F2 /* Functions.swift in Sources */,
 				EF8BDB9C28359994004E24CB /* ContentView.swift in Sources */,
 				EF8BDB9A28359994004E24CB /* SwiftfulChartingApp.swift in Sources */,
 				0A02AA862836F39E00E3BB53 /* HistoricalCurrencyDataModel.swift in Sources */,

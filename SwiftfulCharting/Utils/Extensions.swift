@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension Date: Strideable {
     public func distance(to other: Date) -> TimeInterval {
@@ -14,5 +15,13 @@ extension Date: Strideable {
 
     public func advanced(by n: TimeInterval) -> Date {
         return self + n
+    }
+}
+
+extension View {
+    @ViewBuilder
+    func `if`<Transform: View>(_ condition: Bool, transform: (Self) -> Transform) -> some View {
+        if condition { transform(self) }
+        else { self }
     }
 }

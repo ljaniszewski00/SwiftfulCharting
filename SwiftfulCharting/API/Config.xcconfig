@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  SwiftfulCharting
+//
+//  Created by Łukasz Janiszewski on 26/05/2022.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+API_KEY = "b323b5381amsh8abf895d7669b45p13d16bjsn93ff7a67de3e"

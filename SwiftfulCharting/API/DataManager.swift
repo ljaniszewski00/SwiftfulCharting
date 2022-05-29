@@ -27,7 +27,7 @@ class DataManager {
         for historicalCurrencyDataModel in historicalCurrencyDataModels {
             historicalCurrencyDataDictionary[historicalCurrencyDataModel.updatedDate] = Double(historicalCurrencyDataModel.rates.currency!.rateForAmount)
         }
-        return historicalCurrencyDataDictionary
+        return [String: Double](uniqueKeysWithValues: historicalCurrencyDataDictionary.sorted { $0.key < $1.key })
     }
 }
 

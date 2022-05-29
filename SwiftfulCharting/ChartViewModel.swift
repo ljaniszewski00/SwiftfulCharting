@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SwiftUICharts
 
 class ChartViewModel: ObservableObject {
     @Published var startingDate: Date = Date()
@@ -16,54 +17,57 @@ class ChartViewModel: ObservableObject {
     @Published var toCurrency: String = "USD"
     
     @Published var availableCurrencies = [String]()
-    @Published var historicalCurrencyData = [HistoricalCurrencyDataModel]()
+    @Published var historicalCurrencyData = [String: Double]()
     
     @Published var showInfoView: Bool = false
     @Published var showContentViewColorSheet: Bool = false
     @Published var showSettingsView: Bool = false
+    @Published var showProgressIndicator: Bool = false
     @Published var showChartView: Bool = false
+    @Published var dataReadyToGenerateChart: Bool = false
     @Published var showChartViewSettingsView: Bool = false
     @Published var showContentView: Bool = false
     
-    var historicalCurrencyChartData: [String: Double] {
-        DataManager.shared.getHistoricalCurrencyData(historicalCurrencyDataModels: historicalCurrencyData)
+    var oldStartingDate: Date = Date()
+    private let dayDurationInSeconds: TimeInterval = 60*60*24
+    
+    var chartData: ChartData {
+        let keys = Array(historicalCurrencyData.keys)
+        let values = Array(historicalCurrencyData.values)
+        return ChartData(values: Array(zip(keys, values)))
     }
     
-    func getDateFrom(date: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter.date(from: date)!
-    }
-    
-    func convertDateToStringDate(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter.string(from: date)
-    }
-    
-    func fetchAvailableCurrenciesData() async {
-        DispatchQueue.main.async { [weak self] in
-            Task.init {
-                self?.availableCurrencies = DataManager.shared.getAvailableCurrencies(availableCurrenciesModel: try await APIManager.shared.getAvailableCurrencies())
+    func fetchAvailableCurrenciesData(completion: @escaping (() -> ())) {
+        DispatchQueue.main.async {
+            APIManager.shared.getAvailableCurrencies { availableCurrenciesModel in
+                self.availableCurrencies = DataManager.shared.getAvailableCurrencies(availableCurrenciesModel: availableCurrenciesModel)
+                self.fromCurrency = self.availableCurrencies[0]
+                self.toCurrency = self.availableCurrencies[1]
+                completion()
             }
         }
     }
     
-    func fetchHistoricalCurrencyData() async {
-        DispatchQueue.main.async { [weak self] in
-            Task.init {
-                let dayDurationInSeconds: TimeInterval = 60*60*24
-                var n = 0
-                for date in stride(from: self!.startingDate, to: self!.endingDate, by: dayDurationInSeconds) {
-//                    self?.historicalCurrencyData.append(try await APIManager.shared.getHistoricalCurrencyData(date: self!.convertDateToStringDate(date: date), fromCurrency: self!.fromCurrency, amount: self!.amount, toCurrency: self!.toCurrency))
-                    print(n)
-                    try await Task.sleep(nanoseconds: 1_000_000_000)
-                    n += 1
-                    
-                }
-                
+    func fetchHistoricalCurrencyData(completion: @escaping (() -> ())) {
+        let g = DispatchGroup()
+        var historicalCurrencyDataTemp = [HistoricalCurrencyDataModel]()
+        for date in stride(from: self.startingDate, to: self.endingDate, by: self.dayDurationInSeconds) {
+            g.enter()
+            APIManager.shared.getHistoricalCurrencyData(date: convertDateToStringDate(date: date), fromCurrency: String(self.fromCurrency.prefix(3)), amount: self.amount, toCurrency: String(self.toCurrency.prefix(3))) {
+                historicalCurrencyDataModel in
+                historicalCurrencyDataTemp.append(historicalCurrencyDataModel)
+                g.leave()
             }
         }
+        g.notify(queue:.main) {
+            self.historicalCurrencyData = DataManager.shared.getHistoricalCurrencyData(historicalCurrencyDataModels: historicalCurrencyDataTemp)
+            print(self.historicalCurrencyData)
+            completion()
+        }
+    }
+    
+    func filterDataByNewDates() {
+        historicalCurrencyData = historicalCurrencyData.filter({ $0.key >= convertDateToStringDate(date: self.startingDate) && $0.key <= convertDateToStringDate(date: self.endingDate) })
     }
     
 }

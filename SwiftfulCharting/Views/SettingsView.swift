@@ -80,7 +80,7 @@ struct SettingsView: View {
                     VStack(alignment: .leading) {
                         Text("Choose starting date:")
                             .bold()
-                        DatePicker("", selection: $chartViewModel.startingDate, in: chartViewModel.getDateFrom(date: "2010-01-01")...Date(), displayedComponents: .date)
+                        DatePicker("", selection: $chartViewModel.startingDate, in: getDateFrom(date: "2010-01-01")...Date(), displayedComponents: .date)
                             .datePickerStyle(.compact)
                             .frame(width: screenWidth * 0.3, height: screenHeight * 0.05)
                     }
@@ -111,7 +111,12 @@ struct SettingsView: View {
                 Spacer()
                 Button(action: {
                     withAnimation {
-                        chartViewModel.showChartView = true
+                        chartViewModel.oldStartingDate = chartViewModel.startingDate
+                        chartViewModel.showProgressIndicator = true
+                        chartViewModel.fetchHistoricalCurrencyData() {
+                            chartViewModel.showProgressIndicator = false
+                            chartViewModel.showChartView = true
+                        }
                     }
                 }, label: {
                     Text("Generate Chart")
@@ -126,6 +131,13 @@ struct SettingsView: View {
                 Spacer()
             }
             .padding(.bottom, screenHeight * 0.05)
+        }
+        .if(chartViewModel.showProgressIndicator) {
+            $0
+                .blur(radius: 5)
+                .overlay {
+                    ProgressView()
+                }
         }
         .navigationTitle("Setup Your Chart")
         .navigationBarHidden(false)

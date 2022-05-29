@@ -25,9 +25,11 @@ struct ChartView: View {
         } else {
             NavigationView {
                 VStack {
-                    LineView(data: Array(chartViewModel.historicalCurrencyChartData.values), title: "Currencies values", legend: "Value")
+//                    BarChartView(data: chartViewModel.chartData, title: "Currencies values", legend: "Value", style: .init(formSize: ChartForm.medium), dropShadow: true)
+                    
+                    LineView(data: Array(chartViewModel.historicalCurrencyData.values), title: "Currencies values", legend: "Value", style: .init(formSize: ChartForm.medium))
                         .padding()
-                        .padding(.top, 50)
+                        .padding(.bottom, 50)
                     
                     Spacer()
                     
@@ -54,9 +56,6 @@ struct ChartView: View {
                     .padding(.bottom, screenHeight * 0.05)
                 }
                 .padding()
-                .task {
-                    await chartViewModel.fetchHistoricalCurrencyData()
-                }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         NavigationLink(destination: buildSettingsSheetView(), isActive: $chartViewModel.showChartViewSettingsView) {
@@ -84,71 +83,11 @@ struct ChartView: View {
             }
             .padding()
             
-            VStack(alignment: .leading, spacing: 10) {
-                Text("From:")
-                    .bold()
-                HStack {
-                    Spacer()
-                    Picker("", selection: $chartViewModel.fromCurrency) {
-                        ForEach(chartViewModel.availableCurrencies, id: \.self) {
-                            Text($0)
-                                .foregroundColor(.accentColor)
-                        }
-                    }
-                    .frame(width: screenWidth * 0.9, height: screenHeight * 0.05)
-                    .background {
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke()
-                            .foregroundColor(Color(uiColor: .systemGray2))
-                    }
-                    Spacer()
-                }
-            }
-            
-            VStack(alignment: .leading, spacing: 10) {
-                Text("To:")
-                    .bold()
-                HStack {
-                    Spacer()
-                    Picker("", selection: $chartViewModel.toCurrency) {
-                        ForEach(chartViewModel.availableCurrencies, id: \.self) {
-                            Text($0)
-                                .foregroundColor(.accentColor)
-                        }
-                    }
-                    .frame(width: screenWidth * 0.9, height: screenHeight * 0.05)
-                    .background {
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke()
-                            .foregroundColor(Color(uiColor: .systemGray2))
-                    }
-                    Spacer()
-                }
-            }
-            
-            VStack(alignment: .leading) {
-                Text("Amount:")
-                    .bold()
-                HStack {
-                    Spacer()
-                    TextField("", text: $chartViewModel.amount)
-                        .keyboardType(.decimalPad)
-                        .padding()
-                        .frame(width: screenWidth * 0.9, height: screenHeight * 0.05)
-                        .background {
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke()
-                                .foregroundColor(Color(uiColor: .systemGray2))
-                        }
-                    Spacer()
-                }
-            }
-            
             HStack {
                 VStack(alignment: .leading) {
                     Text("Choose starting date:")
                         .bold()
-                    DatePicker("", selection: $chartViewModel.startingDate, in: chartViewModel.getDateFrom(date: "2010-01-01")...Date(), displayedComponents: .date)
+                    DatePicker("", selection: $chartViewModel.startingDate, in: chartViewModel.oldStartingDate...Date(), displayedComponents: .date)
                         .datePickerStyle(.compact)
                         .frame(width: screenWidth * 0.3, height: screenHeight * 0.05)
                 }
@@ -173,7 +112,8 @@ struct ChartView: View {
                 Spacer()
                 
                 Button(action: {
-                    withAnimation() {
+                    withAnimation {
+                        chartViewModel.filterDataByNewDates()
                         chartViewModel.showChartViewSettingsView = false
                     }
                 }, label: {

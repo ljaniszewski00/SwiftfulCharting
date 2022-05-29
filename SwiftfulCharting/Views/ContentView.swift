@@ -88,8 +88,8 @@ struct ContentView: View {
                 }
                 .padding()
             }
-            .task {
-                await chartViewModel.fetchAvailableCurrenciesData()
+            .onAppear {
+                chartViewModel.fetchAvailableCurrenciesData() {}
             }
         }
     }
@@ -100,6 +100,7 @@ struct ContentView: View {
             Text("Adjust Theme Color")
                 .font(.largeTitle)
                 .bold()
+                .foregroundColor(.accentColor)
                 .padding(.bottom, 40)
             
             LazyVGrid(columns: [GridItem(.flexible()),

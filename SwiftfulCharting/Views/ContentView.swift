@@ -40,7 +40,7 @@ struct ContentView: View {
                                 }, label: {
                                     Text("Start")
                                         .bold()
-                                        .foregroundColor(colorScheme == .light ? .white : .accentColor)
+                                        .foregroundColor(.white)
                                 })
                                 .frame(width: screenWidth * 0.9, height: screenHeight * 0.06)
                                 .background {

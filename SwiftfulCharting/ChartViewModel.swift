@@ -52,14 +52,16 @@ class ChartViewModel: ObservableObject {
     
     func fetchHistoricalCurrencyData(completion: @escaping (() -> ())) {
         let g = DispatchGroup()
-        
-        
         var historicalCurrencyDataTemp = [HistoricalCurrencyDataModel]()
         for date in stride(from: self.startingDate, to: self.endingDate, by: self.dayDurationInSeconds) {
+            print(date)
+        }
+        for date in stride(from: self.startingDate, to: self.endingDate, by: self.dayDurationInSeconds) {
             g.enter()
-                APIManager.shared.getHistoricalCurrencyData(date: convertDateToStringDate(date: date), fromCurrency: String(self.fromCurrency.prefix(3)), amount: self.amount, toCurrency: String(self.toCurrency.prefix(3))) {
+                APIManager.shared.getHistoricalCurrencyData(date: convertDateToStringDate(date: date), fromCurrency: String(self.fromCurrency.prefix(3)), amount: self.amount.replacingOccurrences(of: ",", with: "."), toCurrency: String(self.toCurrency.prefix(3))) {
                     historicalCurrencyDataModel in
                     historicalCurrencyDataTemp.append(historicalCurrencyDataModel)
+                    sleep(2)
                     g.leave()
                 }
         }

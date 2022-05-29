@@ -22,12 +22,23 @@ class DataManager {
         return availableCurrencies.sorted()
     }
     
-    func getHistoricalCurrencyData(historicalCurrencyDataModels: [HistoricalCurrencyDataModel]) -> [String: Double] {
+    func getHistoricalCurrencyData(historicalCurrencyDataModels: [HistoricalCurrencyDataModel]) -> ([String], [Double]) {
         var historicalCurrencyDataDictionary = [String: Double]()
         for historicalCurrencyDataModel in historicalCurrencyDataModels {
             historicalCurrencyDataDictionary[historicalCurrencyDataModel.updatedDate] = Double(historicalCurrencyDataModel.rates.currency!.rateForAmount)
         }
-        return [String: Double](uniqueKeysWithValues: historicalCurrencyDataDictionary.sorted { $0.key < $1.key })
+        
+        let sortedArray = historicalCurrencyDataDictionary.sorted { $0.key < $1.key }
+        
+        var historicalCurrencyDataDates = [String]()
+        var historicalCurrencyDataValues = [Double]()
+        
+        for tupple in sortedArray {
+            historicalCurrencyDataDates.append(String(tupple.0))
+            historicalCurrencyDataValues.append(Double(tupple.1))
+        }
+        
+        return (historicalCurrencyDataDates, historicalCurrencyDataValues)
     }
 }
 

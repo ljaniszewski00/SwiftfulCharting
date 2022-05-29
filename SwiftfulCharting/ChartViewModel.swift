@@ -17,7 +17,7 @@ class ChartViewModel: ObservableObject {
     @Published var toCurrency: String = "USD"
     
     @Published var availableCurrencies = [String]()
-    @Published var historicalCurrencyData = [String: Double]()
+    @Published var historicalCurrencyData = ([String](), [Double]())
     
     @Published var showInfoView: Bool = false
     @Published var showContentViewColorSheet: Bool = false
@@ -32,9 +32,11 @@ class ChartViewModel: ObservableObject {
     private let dayDurationInSeconds: TimeInterval = 60*60*24
     
     var chartData: ChartData {
-        let keys = Array(historicalCurrencyData.keys)
-        let values = Array(historicalCurrencyData.values)
-        return ChartData(values: Array(zip(keys, values)))
+        return ChartData(values: Array(zip(historicalCurrencyData.0, historicalCurrencyData.1)))
+    }
+    
+    init() {
+        fetchAvailableCurrenciesData() {}
     }
     
     func fetchAvailableCurrenciesData(completion: @escaping (() -> ())) {
@@ -67,7 +69,20 @@ class ChartViewModel: ObservableObject {
     }
     
     func filterDataByNewDates() {
-        historicalCurrencyData = historicalCurrencyData.filter({ $0.key >= convertDateToStringDate(date: self.startingDate) && $0.key <= convertDateToStringDate(date: self.endingDate) })
+        var historicalCurrencyDataDates = historicalCurrencyData.0
+        var historicalCurrencyDataValues = historicalCurrencyData.1
+        var indexedToBeDeleted = [Int]()
+        for (index, date) in historicalCurrencyDataDates.enumerated() {
+            if date < convertDateToStringDate(date: self.startingDate) || date > convertDateToStringDate(date: self.endingDate) {
+                indexedToBeDeleted.append(index)
+            }
+        }
+        indexedToBeDeleted = indexedToBeDeleted.sorted(by: >)
+        for index in indexedToBeDeleted {
+            historicalCurrencyDataDates.remove(at: index)
+            historicalCurrencyDataValues.remove(at: index)
+        }
+        historicalCurrencyData = (historicalCurrencyDataDates, historicalCurrencyDataValues)
     }
     
 }

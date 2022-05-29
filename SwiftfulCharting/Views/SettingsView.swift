@@ -134,9 +134,15 @@ struct SettingsView: View {
         }
         .if(chartViewModel.showProgressIndicator) {
             $0
-                .blur(radius: 5)
+                .blur(radius: 50)
                 .overlay {
-                    ProgressView()
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 15)
+                            .foregroundColor(.black)
+                            .frame(width: screenWidth * 0.25, height: 0.15)
+                        ProgressView()
+                    }
+                    
                 }
         }
         .navigationTitle("Setup Your Chart")

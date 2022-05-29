@@ -82,7 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				0A02AA89283E9B0500E3BB53 /* APIManager.swift */,
-				0A02AA8B283EF41D00E3BB53 /* Config.xcconfig */,
 				0ACE855F28402820006782F2 /* DataManager.swift */,
 			);
 			path = API;
@@ -118,6 +117,7 @@
 		EF8BDB9828359994004E24CB /* SwiftfulCharting */ = {
 			isa = PBXGroup;
 			children = (
+				0A02AA8B283EF41D00E3BB53 /* Config.xcconfig */,
 				0ACE856128402C09006782F2 /* Utils */,
 				0A02AA88283E9AF100E3BB53 /* API */,
 				0A02AA87283E9AE100E3BB53 /* Views */,

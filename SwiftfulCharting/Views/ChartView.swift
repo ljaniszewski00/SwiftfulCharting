@@ -25,9 +25,9 @@ struct ChartView: View {
         } else {
             NavigationView {
                 VStack {
-//                    BarChartView(data: chartViewModel.chartData, title: "Currencies values", legend: "Value", style: .init(formSize: ChartForm.medium), dropShadow: true)
+                    BarChartView(data: chartViewModel.chartData, title: "Currencies values", legend: "Value", style: .init(formSize: ChartForm.medium), dropShadow: true)
                     
-                    LineView(data: Array(chartViewModel.historicalCurrencyData.values), title: "Currencies values", legend: "Value", style: .init(formSize: ChartForm.medium))
+                    LineView(data: chartViewModel.historicalCurrencyData.1, title: "Currencies values", legend: "Value", style: .init(formSize: ChartForm.medium))
                         .padding()
                         .padding(.bottom, 50)
                     

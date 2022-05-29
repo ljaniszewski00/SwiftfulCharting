@@ -88,9 +88,6 @@ struct ContentView: View {
                 }
                 .padding()
             }
-            .onAppear {
-                chartViewModel.fetchAvailableCurrenciesData() {}
-            }
         }
     }
     

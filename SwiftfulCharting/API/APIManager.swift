@@ -8,10 +8,7 @@
 import Foundation
 
 class APIManager {
-    private let headers = [
-        "X-RapidAPI-Host": "currency-converter5.p.rapidapi.com",
-        "X-RapidAPI-Key": "b323b5381amsh8abf895d7669b45p13d16bjsn93ff7a67de3e"
-    ]
+    private let headers: [String: String]
     
     enum APICallTypes {
         case availableCurrencies
@@ -23,17 +20,17 @@ class APIManager {
     }
     
     private init() {
-//        if let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String {
-//            headers = [
-//                "X-RapidAPI-Host": "currency-converter5.p.rapidapi.com",
-//                "X-RapidAPI-Key": "b323b5381amsh8abf895d7669b45p13d16bjsn93ff7a67de3e"
-//            ]
-//        } else {
-//            headers = [
-//                "X-RapidAPI-Host": "currency-converter5.p.rapidapi.com",
-//                "X-RapidAPI-Key": "b323b5381amsh8abf895d7669b45p13d16bjsn93ff7a67de3e"
-//            ]
-//        }
+        if let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String {
+            headers = [
+                "X-RapidAPI-Host": "currency-converter5.p.rapidapi.com",
+                "X-RapidAPI-Key": apiKey
+            ]
+        } else {
+            headers = [
+                "X-RapidAPI-Host": "currency-converter5.p.rapidapi.com",
+                "X-RapidAPI-Key": "API_KEY"
+            ]
+        }
     }
     
     private func buildRequestFor(_ apiCallType: APICallTypes, date: String = "2020-01-20", fromCurrency: String = "EUR", amount: String = "1.0", toCurrency: String = "GBP") -> NSMutableURLRequest {
@@ -54,17 +51,6 @@ class APIManager {
         request.allHTTPHeaderFields = headers
         return request
     }
-    
-//    private func makeAPICall(request: NSMutableURLRequest) async throws -> Data {
-//        let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
-//
-//        print(response)
-//        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-//            fatalError("Fatal error")
-//        }
-//
-//        return data
-//    }
     
     private func makeAPICall(request: NSMutableURLRequest, completion: @escaping ((Data) -> ())) {
         URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in

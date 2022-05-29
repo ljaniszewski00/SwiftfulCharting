@@ -17,6 +17,23 @@ struct ChartView: View {
     private let screenWidth: CGFloat = UIScreen.main.bounds.width
     private let screenHeight: CGFloat = UIScreen.main.bounds.height
     
+    var calculatedSpacing: CGFloat {
+        switch chartViewModel.historicalCurrencyData.0.count {
+        case 1:
+            return 0
+        case 2:
+            return 110
+        case 3:
+            return 70
+        case 4:
+            return 45
+        case 5:
+            return 25
+        default:
+            return 0
+        }
+    }
+    
     var body: some View {
         if chartViewModel.showContentView {
             ContentView()
@@ -25,11 +42,21 @@ struct ChartView: View {
         } else {
             NavigationView {
                 VStack {
-                    BarChartView(data: chartViewModel.chartData, title: "Currencies values", legend: "Value", style: .init(formSize: ChartForm.medium), dropShadow: true)
+//                    BarChartView(data: chartViewModel.chartData, title: "Currencies values", legend: "Value", style: .init(formSize: ChartForm.medium), dropShadow: true)
                     
-                    LineView(data: chartViewModel.historicalCurrencyData.1, title: "Currencies values", legend: "Value", style: .init(formSize: ChartForm.medium))
+                    LineView(data: chartViewModel.historicalCurrencyData.1, title: "Currencies values", legend: "Value", style: ChartStyle(backgroundColor: colorScheme == .light ? .white : .black, accentColor: .accentColor, gradientColor: .init(start: .accentColor, end: .accentColor), textColor: colorScheme == .light ? .black : .white, legendTextColor: .gray, dropShadowColor: .black))
                         .padding()
-                        .padding(.bottom, 50)
+                    
+                    HStack(spacing: calculatedSpacing) {
+                        ForEach(chartViewModel.historicalCurrencyData.0, id: \.self) { date in
+                            Text(date)
+                                .font(.footnote)
+                                .foregroundColor(.gray)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .frame(width: 45)
+                                .offset(x: 20, y: -190)
+                        }
+                    }
                     
                     Spacer()
                     
@@ -48,7 +75,7 @@ struct ChartView: View {
                         .frame(width: screenWidth * 0.9, height: screenHeight * 0.06)
                         .background {
                             RoundedRectangle(cornerRadius: 5)
-                                .foregroundColor(.red)
+                                .foregroundColor(.accentColor)
                         }
                         
                         Spacer()
@@ -99,7 +126,7 @@ struct ChartView: View {
                 VStack(alignment: .leading) {
                     Text("Choose ending date:")
                         .bold()
-                    DatePicker("", selection: $chartViewModel.endingDate, in: chartViewModel.startingDate...Date(), displayedComponents: .date)
+                    DatePicker("", selection: $chartViewModel.endingDate, in: chartViewModel.startingDate...(addDaysToDate(days: 4, date: chartViewModel.startingDate) > Date() ? Date() : addDaysToDate(days: 4, date: chartViewModel.startingDate)), displayedComponents: .date)
                         .frame(width: screenWidth * 0.3, height: screenHeight * 0.05)
                 }
                 

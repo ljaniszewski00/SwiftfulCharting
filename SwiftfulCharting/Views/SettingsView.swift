@@ -92,7 +92,7 @@ struct SettingsView: View {
                     VStack(alignment: .leading) {
                         Text("Choose ending date:")
                             .bold()
-                        DatePicker("", selection: $chartViewModel.endingDate, in: chartViewModel.startingDate...Date(), displayedComponents: .date)
+                        DatePicker("", selection: $chartViewModel.endingDate, in: chartViewModel.startingDate...(addDaysToDate(days: 4, date: chartViewModel.startingDate) > Date() ? Date() : addDaysToDate(days: 4, date: chartViewModel.startingDate)), displayedComponents: .date)
                             .frame(width: screenWidth * 0.3, height: screenHeight * 0.05)
                     }
                     
@@ -134,14 +134,16 @@ struct SettingsView: View {
         }
         .if(chartViewModel.showProgressIndicator) {
             $0
-                .blur(radius: 50)
+                .blur(radius: 20)
                 .overlay {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 15)
-                            .foregroundColor(.black)
-                            .frame(width: screenWidth * 0.25, height: 0.15)
-                        ProgressView()
-                    }
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                        .background {
+                            RoundedRectangle(cornerRadius: 15)
+                                .foregroundColor(Color(uiColor: .systemGray6))
+                                .frame(width: screenWidth * 0.35, height: screenHeight * 0.15)
+                                .shadow(radius: 30)
+                        }
                     
                 }
         }

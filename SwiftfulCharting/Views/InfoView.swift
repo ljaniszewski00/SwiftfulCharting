@@ -44,8 +44,8 @@ struct InfoView: View {
                     
                     
                     HStack {
-                        Link(destination: URL(string: "https://github.com/AppPear/ChartView")!) {
-                            Text("ChartView")
+                        Link(destination: URL(string: "https://github.com/willdale/SwiftUICharts")!) {
+                            Text("SwiftUICharts")
                                 .bold()
                         }
                         .offset(y: -10.5)

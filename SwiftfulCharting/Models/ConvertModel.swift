@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ConvertModel: Decodable {
+struct ConvertModel: Decodable, Hashable, Equatable {
     /*
      SAMPLE RESPONSE:
      
@@ -38,6 +38,14 @@ struct ConvertModel: Decodable {
         case info
         case date
         case result
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(date)
+    }
+    
+    static func ==(lhs: ConvertModel, rhs: ConvertModel) -> Bool {
+        return lhs.date == rhs.date
     }
     
     struct Query: Decodable {

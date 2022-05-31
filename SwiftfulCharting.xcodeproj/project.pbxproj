@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A02AA8A283E9B0500E3BB53 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02AA89283E9B0500E3BB53 /* APIManager.swift */; };
 		0A02AA8F283F94ED00E3BB53 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02AA8E283F94ED00E3BB53 /* InfoView.swift */; };
-		0A02AA97283F9FF700E3BB53 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 0A02AA96283F9FF700E3BB53 /* SwiftUICharts */; };
+		0A5CA4802846B7AA003A0151 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 0A5CA47F2846B7AA003A0151 /* SwiftUICharts */; };
 		0A9F63CB28455FDD009862E9 /* SupportedSymbolsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F63CA28455FDD009862E9 /* SupportedSymbolsModel.swift */; };
 		0A9F63CD28455FE9009862E9 /* LatestRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F63CC28455FE9009862E9 /* LatestRatesModel.swift */; };
 		0A9F63CF28455FF6009862E9 /* HistoricalRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F63CE28455FF6009862E9 /* HistoricalRatesModel.swift */; };
@@ -57,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A02AA97283F9FF700E3BB53 /* SwiftUICharts in Frameworks */,
+				0A5CA4802846B7AA003A0151 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,7 +180,7 @@
 			);
 			name = SwiftfuSwiftfulChartingCharting;
 			packageProductDependencies = (
-				0A02AA96283F9FF700E3BB53 /* SwiftUICharts */,
+				0A5CA47F2846B7AA003A0151 /* SwiftUICharts */,
 			);
 			productName = SwiftfulCharting;
 			productReference = EF8BDB9628359994004E24CB /* SwiftfulCharting.app */;
@@ -211,7 +211,7 @@
 			);
 			mainGroup = EF8BDB8D28359993004E24CB;
 			packageReferences = (
-				0A02AA95283F9FF700E3BB53 /* XCRemoteSwiftPackageReference "ChartView" */,
+				0A5CA47E2846B7AA003A0151 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 			);
 			productRefGroup = EF8BDB9728359994004E24CB /* Products */;
 			projectDirPath = "";
@@ -461,20 +461,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0A02AA95283F9FF700E3BB53 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+		0A5CA47E2846B7AA003A0151 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AppPear/ChartView";
+			repositoryURL = "https://github.com/willdale/SwiftUICharts";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 2.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0A02AA96283F9FF700E3BB53 /* SwiftUICharts */ = {
+		0A5CA47F2846B7AA003A0151 /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0A02AA95283F9FF700E3BB53 /* XCRemoteSwiftPackageReference "ChartView" */;
+			package = 0A5CA47E2846B7AA003A0151 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
 			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */

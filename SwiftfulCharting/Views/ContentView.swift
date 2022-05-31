@@ -32,10 +32,10 @@ struct ContentView: View {
                     VStack(spacing: 20) {
                         HStack {
                             Spacer()
-                            NavigationLink(destination: SettingsView().environmentObject(chartViewModel).environmentObject(accentColorManager), isActive: $chartViewModel.showSettingsView) {
+                            NavigationLink(destination: ChooseCallView().environmentObject(chartViewModel).environmentObject(accentColorManager), isActive: $chartViewModel.showChooseCallView) {
                                 Button(action: {
                                     withAnimation() {
-                                        chartViewModel.showSettingsView = true
+                                        chartViewModel.showChooseCallView = true
                                     }
                                 }, label: {
                                     Text("Start")
@@ -88,6 +88,7 @@ struct ContentView: View {
                 }
                 .padding()
             }
+            .navigationViewStyle(.stack)
         }
     }
     

@@ -17,8 +17,11 @@ struct InfoView: View {
                         .bold()
                         .padding(.top, 30)
                     Text("Choose currency which you want to convert, provide proper amount and then currency to which you want to convert. Click generate chart.")
+                        .fixedSize(horizontal: false, vertical: true)
                     Text("After data has been downloaded from API, the chart will be generated.")
+                        .fixedSize(horizontal: false, vertical: true)
                     Text("You can zoom it and see particular values by clicking on any of it's fragments. What's more, you can change currency at any time and new chart will be generated.")
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding(.bottom, 30)
                 
@@ -28,8 +31,8 @@ struct InfoView: View {
                         .bold()
                     
                     HStack {
-                        Link(destination: URL(string: "https://rapidapi.com/natkapral/api/currency-converter5/")!) {
-                            Text("Currency Converter")
+                        Link(destination: URL(string: "https://rapidapi.com/fixer/api/fixer-currency/")!) {
+                            Text("Fixer Currency")
                                 .bold()
                         }
                         .offset(y: -10.5)

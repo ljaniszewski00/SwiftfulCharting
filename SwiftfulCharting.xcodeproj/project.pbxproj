@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A02AA842836F39000E3BB53 /* AvailableCurrenciesAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02AA832836F39000E3BB53 /* AvailableCurrenciesAPIModel.swift */; };
-		0A02AA862836F39E00E3BB53 /* HistoricalCurrencyDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02AA852836F39E00E3BB53 /* HistoricalCurrencyDataModel.swift */; };
 		0A02AA8A283E9B0500E3BB53 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02AA89283E9B0500E3BB53 /* APIManager.swift */; };
 		0A02AA8F283F94ED00E3BB53 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02AA8E283F94ED00E3BB53 /* InfoView.swift */; };
 		0A02AA97283F9FF700E3BB53 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 0A02AA96283F9FF700E3BB53 /* SwiftUICharts */; };
+		0A9F63CB28455FDD009862E9 /* SupportedSymbolsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F63CA28455FDD009862E9 /* SupportedSymbolsModel.swift */; };
+		0A9F63CD28455FE9009862E9 /* LatestRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F63CC28455FE9009862E9 /* LatestRatesModel.swift */; };
+		0A9F63CF28455FF6009862E9 /* HistoricalRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F63CE28455FF6009862E9 /* HistoricalRatesModel.swift */; };
+		0A9F63D128455FFD009862E9 /* ConvertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F63D028455FFD009862E9 /* ConvertModel.swift */; };
+		0A9F63D4284571B9009862E9 /* ChooseCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F63D3284571B9009862E9 /* ChooseCallView.swift */; };
+		0A9F63DF284578AE009862E9 /* AdjustDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F63DE284578AE009862E9 /* AdjustDataView.swift */; };
 		0ACE856028402820006782F2 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE855F28402820006782F2 /* DataManager.swift */; };
 		0ACE856328402C17006782F2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE856228402C17006782F2 /* Extensions.swift */; };
 		0ACE8565284232AA006782F2 /* AccentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE8564284232AA006782F2 /* AccentColorManager.swift */; };
@@ -21,17 +25,20 @@
 		EF8BDB9C28359994004E24CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8BDB9B28359994004E24CB /* ContentView.swift */; };
 		EF8BDB9E28359995004E24CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF8BDB9D28359995004E24CB /* Assets.xcassets */; };
 		EF8BDBA128359995004E24CB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF8BDBA028359995004E24CB /* Preview Assets.xcassets */; };
-		EF8BDBAC28359DF8004E24CB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8BDBAB28359DF8004E24CB /* SettingsView.swift */; };
 		EF8BDBAE28359DFF004E24CB /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8BDBAD28359DFF004E24CB /* ChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A02AA832836F39000E3BB53 /* AvailableCurrenciesAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableCurrenciesAPIModel.swift; sourceTree = "<group>"; };
-		0A02AA852836F39E00E3BB53 /* HistoricalCurrencyDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCurrencyDataModel.swift; sourceTree = "<group>"; };
 		0A02AA89283E9B0500E3BB53 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		0A02AA8B283EF41D00E3BB53 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		0A02AA8C283EF49900E3BB53 /* SwiftfuSwiftfulChartingCharting-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "SwiftfuSwiftfulChartingCharting-Info.plist"; sourceTree = "<group>"; };
 		0A02AA8E283F94ED00E3BB53 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		0A9F63CA28455FDD009862E9 /* SupportedSymbolsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedSymbolsModel.swift; sourceTree = "<group>"; };
+		0A9F63CC28455FE9009862E9 /* LatestRatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestRatesModel.swift; sourceTree = "<group>"; };
+		0A9F63CE28455FF6009862E9 /* HistoricalRatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalRatesModel.swift; sourceTree = "<group>"; };
+		0A9F63D028455FFD009862E9 /* ConvertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertModel.swift; sourceTree = "<group>"; };
+		0A9F63D3284571B9009862E9 /* ChooseCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCallView.swift; sourceTree = "<group>"; };
+		0A9F63DE284578AE009862E9 /* AdjustDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustDataView.swift; sourceTree = "<group>"; };
 		0ACE855F28402820006782F2 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		0ACE856228402C17006782F2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0ACE8564284232AA006782F2 /* AccentColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentColorManager.swift; sourceTree = "<group>"; };
@@ -42,7 +49,6 @@
 		EF8BDB9B28359994004E24CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EF8BDB9D28359995004E24CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF8BDBA028359995004E24CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		EF8BDBAB28359DF8004E24CB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		EF8BDBAD28359DFF004E24CB /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,8 +67,10 @@
 		0A02AA822836F22800E3BB53 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0A02AA832836F39000E3BB53 /* AvailableCurrenciesAPIModel.swift */,
-				0A02AA852836F39E00E3BB53 /* HistoricalCurrencyDataModel.swift */,
+				0A9F63CA28455FDD009862E9 /* SupportedSymbolsModel.swift */,
+				0A9F63CC28455FE9009862E9 /* LatestRatesModel.swift */,
+				0A9F63CE28455FF6009862E9 /* HistoricalRatesModel.swift */,
+				0A9F63D028455FFD009862E9 /* ConvertModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -70,8 +78,8 @@
 		0A02AA87283E9AE100E3BB53 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0A9F63D2284571A1009862E9 /* SettingsViews */,
 				EF8BDBAD28359DFF004E24CB /* ChartView.swift */,
-				EF8BDBAB28359DF8004E24CB /* SettingsView.swift */,
 				EF8BDB9B28359994004E24CB /* ContentView.swift */,
 				0A02AA8E283F94ED00E3BB53 /* InfoView.swift */,
 			);
@@ -85,6 +93,23 @@
 				0ACE855F28402820006782F2 /* DataManager.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		0A9F63D2284571A1009862E9 /* SettingsViews */ = {
+			isa = PBXGroup;
+			children = (
+				0A9F63D3284571B9009862E9 /* ChooseCallView.swift */,
+				0A9F63DE284578AE009862E9 /* AdjustDataView.swift */,
+			);
+			path = SettingsViews;
+			sourceTree = "<group>";
+		};
+		0A9F63E0284590AB009862E9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EF86E91F2835A89300B52782 /* ChartViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		0ACE856128402C09006782F2 /* Utils */ = {
@@ -120,12 +145,12 @@
 				0A02AA8B283EF41D00E3BB53 /* Config.xcconfig */,
 				0ACE856128402C09006782F2 /* Utils */,
 				0A02AA88283E9AF100E3BB53 /* API */,
+				0A9F63E0284590AB009862E9 /* ViewModel */,
 				0A02AA87283E9AE100E3BB53 /* Views */,
 				0A02AA822836F22800E3BB53 /* Models */,
 				EF8BDB9928359994004E24CB /* SwiftfulChartingApp.swift */,
 				EF8BDB9D28359995004E24CB /* Assets.xcassets */,
 				EF8BDB9F28359995004E24CB /* Preview Content */,
-				EF86E91F2835A89300B52782 /* ChartViewModel.swift */,
 			);
 			path = SwiftfulCharting;
 			sourceTree = "<group>";
@@ -214,19 +239,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A9F63CB28455FDD009862E9 /* SupportedSymbolsModel.swift in Sources */,
 				0A02AA8A283E9B0500E3BB53 /* APIManager.swift in Sources */,
 				0ACE856028402820006782F2 /* DataManager.swift in Sources */,
 				EF86E9202835A89300B52782 /* ChartViewModel.swift in Sources */,
 				0ACE8565284232AA006782F2 /* AccentColorManager.swift in Sources */,
-				EF8BDBAC28359DF8004E24CB /* SettingsView.swift in Sources */,
 				0ACE85672843BA4A006782F2 /* Functions.swift in Sources */,
+				0A9F63DF284578AE009862E9 /* AdjustDataView.swift in Sources */,
+				0A9F63D4284571B9009862E9 /* ChooseCallView.swift in Sources */,
+				0A9F63CF28455FF6009862E9 /* HistoricalRatesModel.swift in Sources */,
+				0A9F63D128455FFD009862E9 /* ConvertModel.swift in Sources */,
 				EF8BDB9C28359994004E24CB /* ContentView.swift in Sources */,
 				EF8BDB9A28359994004E24CB /* SwiftfulChartingApp.swift in Sources */,
-				0A02AA862836F39E00E3BB53 /* HistoricalCurrencyDataModel.swift in Sources */,
 				EF8BDBAE28359DFF004E24CB /* ChartView.swift in Sources */,
 				0A02AA8F283F94ED00E3BB53 /* InfoView.swift in Sources */,
 				0ACE856328402C17006782F2 /* Extensions.swift in Sources */,
-				0A02AA842836F39000E3BB53 /* AvailableCurrenciesAPIModel.swift in Sources */,
+				0A9F63CD28455FE9009862E9 /* LatestRatesModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,31 +14,12 @@ class DataManager {
     
     private init() {}
     
-    func getAvailableCurrencies(availableCurrenciesModel: AvailableCurrenciesModel) -> [String] {
-        var availableCurrencies = [String]()
-        for availableCurrency in availableCurrenciesModel.currencies {
-            availableCurrencies.append(availableCurrency.key + " - " + availableCurrency.value)
+    func getSupportedSymbols(supportedSymbolsModel: SupportedSymbolsModel) -> [String] {
+        var supportedSymbols = [String]()
+        for supportedSymbol in supportedSymbolsModel.symbols {
+            supportedSymbols.append(supportedSymbol.key + " - " + supportedSymbol.value)
         }
-        return availableCurrencies.sorted()
-    }
-    
-    func getHistoricalCurrencyData(historicalCurrencyDataModels: [HistoricalCurrencyDataModel]) -> ([String], [Double]) {
-        var historicalCurrencyDataDictionary = [String: Double]()
-        for historicalCurrencyDataModel in historicalCurrencyDataModels {
-            historicalCurrencyDataDictionary[historicalCurrencyDataModel.updatedDate] = Double(historicalCurrencyDataModel.rates.currency!.rateForAmount)
-        }
-        
-        let sortedArray = historicalCurrencyDataDictionary.sorted { $0.key < $1.key }
-        
-        var historicalCurrencyDataDates = [String]()
-        var historicalCurrencyDataValues = [Double]()
-        
-        for tupple in sortedArray {
-            historicalCurrencyDataDates.append(String(tupple.0))
-            historicalCurrencyDataValues.append(Double(tupple.1))
-        }
-        
-        return (historicalCurrencyDataDates, historicalCurrencyDataValues)
+        return supportedSymbols.sorted()
     }
 }
 

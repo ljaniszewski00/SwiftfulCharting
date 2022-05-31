@@ -17,22 +17,22 @@ struct ChartView: View {
     private let screenWidth: CGFloat = UIScreen.main.bounds.width
     private let screenHeight: CGFloat = UIScreen.main.bounds.height
     
-    var calculatedSpacing: CGFloat {
-        switch chartViewModel.historicalCurrencyData.0.count {
-        case 1:
-            return 0
-        case 2:
-            return 110
-        case 3:
-            return 70
-        case 4:
-            return 45
-        case 5:
-            return 25
-        default:
-            return 0
-        }
-    }
+//    var calculatedSpacing: CGFloat {
+//        switch chartViewModel.historicalCurrencyData.0.count {
+//        case 1:
+//            return 0
+//        case 2:
+//            return 110
+//        case 3:
+//            return 70
+//        case 4:
+//            return 45
+//        case 5:
+//            return 25
+//        default:
+//            return 0
+//        }
+//    }
     
     var body: some View {
         if chartViewModel.showContentView {
@@ -42,19 +42,35 @@ struct ChartView: View {
         } else {
             NavigationView {
                 VStack {
+                    
 //                    BarChartView(data: chartViewModel.chartData, title: "Currencies values", legend: "Value", style: .init(formSize: ChartForm.medium), dropShadow: true)
                     
-                    LineView(data: chartViewModel.historicalCurrencyData.1, title: "Currencies values", legend: "Value", style: ChartStyle(backgroundColor: colorScheme == .light ? .white : .black, accentColor: .accentColor, gradientColor: .init(start: .accentColor, end: .accentColor), textColor: colorScheme == .light ? .black : .white, legendTextColor: .gray, dropShadowColor: .black))
-                        .padding()
+//                    LineView(data: chartViewModel.historicalCurrencyData.1, title: "Currencies values", legend: "Value", style: ChartStyle(backgroundColor: colorScheme == .light ? .white : .black, accentColor: .accentColor, gradientColor: .init(start: .accentColor, end: .accentColor), textColor: colorScheme == .light ? .black : .white, legendTextColor: .gray, dropShadowColor: .black))
+//                        .padding()
+//
+//                    HStack(spacing: calculatedSpacing) {
+//                        ForEach(chartViewModel.historicalCurrencyData.0, id: \.self) { date in
+//                            Text(date)
+//                                .font(.footnote)
+//                                .foregroundColor(.gray)
+//                                .fixedSize(horizontal: false, vertical: true)
+//                                .frame(width: 45)
+//                                .offset(x: 20, y: -190)
+//                        }
+//                    }
                     
-                    HStack(spacing: calculatedSpacing) {
-                        ForEach(chartViewModel.historicalCurrencyData.0, id: \.self) { date in
-                            Text(date)
-                                .font(.footnote)
-                                .foregroundColor(.gray)
-                                .fixedSize(horizontal: false, vertical: true)
-                                .frame(width: 45)
-                                .offset(x: 20, y: -190)
+                    switch chartViewModel.apiCallType {
+                    case .latestRates:
+                        if let latestRatesModel = chartViewModel.latestRatesModel {
+                            LineView(data: Array(latestRatesModel.rates.values), title: "Currencies values", legend: "Value", style: ChartStyle(backgroundColor: colorScheme == .light ? .white : .black, accentColor: .accentColor, gradientColor: .init(start: .accentColor, end: .accentColor), textColor: colorScheme == .light ? .black : .white, legendTextColor: .gray, dropShadowColor: .black))
+                        }
+                    case .historicalRates:
+                        if let historicalRatesModel = chartViewModel.historicalRatesModel {
+                            LineView(data: Array(historicalRatesModel.rates.values), title: "Currencies values", legend: "Value", style: ChartStyle(backgroundColor: colorScheme == .light ? .white : .black, accentColor: .accentColor, gradientColor: .init(start: .accentColor, end: .accentColor), textColor: colorScheme == .light ? .black : .white, legendTextColor: .gray, dropShadowColor: .black))
+                        }
+                    case .convert:
+                        if let convertModels = chartViewModel.convertModels {
+                            
                         }
                     }
                     
@@ -83,18 +99,21 @@ struct ChartView: View {
                     .padding(.bottom, screenHeight * 0.05)
                 }
                 .padding()
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink(destination: buildSettingsSheetView(), isActive: $chartViewModel.showChartViewSettingsView) {
-                            Button(action: {
-                                withAnimation {
-                                    chartViewModel.showChartViewSettingsView = true
+                .if(chartViewModel.apiCallType == .convert) {
+                    $0
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                NavigationLink(destination: buildSettingsSheetView(), isActive: $chartViewModel.showChartViewSettingsView) {
+                                    Button(action: {
+                                        withAnimation {
+                                            chartViewModel.showChartViewSettingsView = true
+                                        }
+                                    }, label: {
+                                        Image(systemName: "slider.horizontal.3")
+                                    })
                                 }
-                            }, label: {
-                                Image(systemName: "slider.horizontal.3")
-                            })
+                            }
                         }
-                    }
                 }
             }
         }
@@ -102,7 +121,7 @@ struct ChartView: View {
     
     @ViewBuilder
     func buildSettingsSheetView() -> some View {
-        VStack(alignment: .leading, spacing: 30) {
+        VStack(spacing: 70) {
             VStack(alignment: .leading) {
                 Text("Adjust Chart Data")
                     .font(.largeTitle)
@@ -112,26 +131,39 @@ struct ChartView: View {
             
             HStack {
                 VStack(alignment: .leading) {
-                    Text("Choose starting date:")
+                    Text("Choose Starting Date:")
+                        .font(.title2)
                         .bold()
                     DatePicker("", selection: $chartViewModel.startingDate, in: chartViewModel.oldStartingDate...Date(), displayedComponents: .date)
                         .datePickerStyle(.compact)
-                        .frame(width: screenWidth * 0.3, height: screenHeight * 0.05)
+                        .padding(.trailing, screenWidth * 0.46)
+                    Text("Choose a starting date from which you want to gather data")
+                        .font(.callout)
+                        .foregroundColor(.gray)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 
                 Spacer()
             }
+            .frame(width: screenWidth * 0.8, height: screenHeight * 0.1)
             
             HStack {
                 VStack(alignment: .leading) {
-                    Text("Choose ending date:")
+                    Text("Choose Ending Date:")
+                        .font(.title2)
                         .bold()
-                    DatePicker("", selection: $chartViewModel.endingDate, in: chartViewModel.startingDate...(addDaysToDate(days: 4, date: chartViewModel.startingDate) > Date() ? Date() : addDaysToDate(days: 4, date: chartViewModel.startingDate)), displayedComponents: .date)
-                        .frame(width: screenWidth * 0.3, height: screenHeight * 0.05)
+                    DatePicker("", selection: $chartViewModel.endingDate, in: chartViewModel.startingDate...(addDaysToDate(days: 5, date: chartViewModel.startingDate) > Date() ? Date() : addDaysToDate(days: 5, date: chartViewModel.startingDate)), displayedComponents: .date)
+                        .datePickerStyle(.compact)
+                        .padding(.trailing, screenWidth * 0.46)
+                    Text("Choose an ending date from which you want to gather data")
+                        .font(.callout)
+                        .foregroundColor(.gray)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 
                 Spacer()
             }
+            .frame(width: screenWidth * 0.8, height: screenHeight * 0.1)
             
             Spacer()
             
@@ -164,6 +196,7 @@ struct ChartView: View {
 
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartView().environmentObject(ChartViewModel())
+        ChartView()
+            .environmentObject(ChartViewModel())
     }
 }

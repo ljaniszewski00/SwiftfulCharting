@@ -14,13 +14,7 @@ class ChartViewModel: ObservableObject {
     @Published var endingDate: Date = Date()
     @Published var base: String = "EUR"
     @Published var amount: String = "1.0"
-//    @Published var symbols: [String] = []
     @Published var convertTo: String = "JPY"
-    
-//    @Published var supportedSymbols = [String]()
-//    @Published var latestRatesModel: LatestRatesModel? = nil
-//    @Published var historicalRatesModel: HistoricalRatesModel? = nil
-//    @Published var convertModels: [ConvertModel]? = nil
     
     @Published var symbols: [String] = ["AED - United Arab Emirates Dirham", "AFN - Afghan Afghani", "ALL - Albanian Lek", "AMD - Armenian Dram", "ANG - Netherlands Antillean Guilder"]
     
@@ -84,7 +78,7 @@ class ChartViewModel: ObservableObject {
     private let dayDurationInSeconds: TimeInterval = 60*60*24
     
     init() {
-//        fetchSupportedSymbols() {}
+        fetchSupportedSymbols() {}
     }
     
     func fetchSupportedSymbols(completion: @escaping (() -> ())) {
@@ -102,6 +96,7 @@ class ChartViewModel: ObservableObject {
         APIManager.shared.getLatestRates(base: base, symbols: symbols) { latestRatesModel in
             DispatchQueue.main.async {
                 self.latestRatesModel = latestRatesModel
+                completion()
             }
         }
     }
@@ -110,6 +105,7 @@ class ChartViewModel: ObservableObject {
         APIManager.shared.getHistoricalRates(base: base, symbols: symbols, date: convertDateToStringDate(date: startingDate)) { historicalRatesModel in
             DispatchQueue.main.async {
                 self.historicalRatesModel = historicalRatesModel
+                completion()
             }
         }
     }

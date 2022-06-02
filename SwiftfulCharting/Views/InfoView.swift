@@ -41,8 +41,6 @@ struct InfoView: View {
                     }
                     .font(.callout)
                     
-                    
-                    
                     HStack {
                         Link(destination: URL(string: "https://github.com/willdale/SwiftUICharts")!) {
                             Text("SwiftUICharts")

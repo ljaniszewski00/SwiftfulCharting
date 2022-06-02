@@ -170,19 +170,19 @@ struct AdjustDataView: View {
                             chartViewModel.showProgressIndicator = true
                             switch chartViewModel.apiCallType {
                             case .latestRates:
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                chartViewModel.fetchLatestRates {
                                     chartViewModel.prepareLatestRatesAndHistoricalRatesChartData()
                                     chartViewModel.showProgressIndicator = false
                                     chartViewModel.showChartView = true
                                 }
                             case .historicalRates:
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                chartViewModel.fetchHistoricalRates {
                                     chartViewModel.prepareLatestRatesAndHistoricalRatesChartData()
                                     chartViewModel.showProgressIndicator = false
                                     chartViewModel.showChartView = true
                                 }
                             case .convert:
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                chartViewModel.fetchConvert {
                                     chartViewModel.prepareConvertChartData()
                                     chartViewModel.showProgressIndicator = false
                                     chartViewModel.showChartView = true

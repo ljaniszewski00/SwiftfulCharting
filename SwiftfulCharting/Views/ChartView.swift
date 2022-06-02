@@ -451,7 +451,7 @@ struct ChartView: View {
                     }
                 }, label: {
                     Text("Update")
-                        .foregroundColor(colorScheme == .light ? .white : .accentColor)
+                        .foregroundColor(.white)
                         .bold()
                 })
                 .frame(width: screenWidth * 0.9, height: screenHeight * 0.06)

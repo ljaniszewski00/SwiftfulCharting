@@ -171,16 +171,19 @@ struct AdjustDataView: View {
                             switch chartViewModel.apiCallType {
                             case .latestRates:
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    chartViewModel.prepareLatestRatesAndHistoricalRatesChartData()
                                     chartViewModel.showProgressIndicator = false
                                     chartViewModel.showChartView = true
                                 }
                             case .historicalRates:
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    chartViewModel.prepareLatestRatesAndHistoricalRatesChartData()
                                     chartViewModel.showProgressIndicator = false
                                     chartViewModel.showChartView = true
                                 }
                             case .convert:
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    chartViewModel.prepareConvertChartData()
                                     chartViewModel.showProgressIndicator = false
                                     chartViewModel.showChartView = true
                                 }
@@ -204,15 +207,21 @@ struct AdjustDataView: View {
                 $0
                     .blur(radius: 20)
                     .overlay {
-                        ProgressView()
-                            .progressViewStyle(.circular)
-                            .background {
-                                RoundedRectangle(cornerRadius: 15)
-                                    .foregroundColor(Color(uiColor: .systemGray6))
-                                    .frame(width: screenWidth * 0.35, height: screenHeight * 0.15)
-                                    .shadow(radius: 30)
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 15)
+                                .foregroundColor(Color(uiColor: .systemGray6))
+                                .frame(width: screenWidth * 0.55, height: screenHeight * 0.23)
+                                .shadow(radius: 30)
+                            
+                            VStack(spacing: 40) {
+                                ProgressView()
+                                    .progressViewStyle(.circular)
+                                Text("Generating chart...")
+                                    .font(.title2)
+                                    .bold()
+                                    .padding()
                             }
-                        
+                        }
                     }
             }
             .navigationTitle("Setup Your Chart")

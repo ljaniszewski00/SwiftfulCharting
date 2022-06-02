@@ -12,10 +12,10 @@ import SwiftUICharts
 class ChartViewModel: ObservableObject {
     @Published var startingDate: Date = Date()
     @Published var endingDate: Date = Date()
-    @Published var base: String = "USD"
+    @Published var base: String = "EUR"
     @Published var amount: String = "1.0"
 //    @Published var symbols: [String] = []
-    @Published var convertTo: String = "GBP"
+    @Published var convertTo: String = "JPY"
     
 //    @Published var supportedSymbols = [String]()
 //    @Published var latestRatesModel: LatestRatesModel? = nil
@@ -26,9 +26,9 @@ class ChartViewModel: ObservableObject {
     
     @Published var supportedSymbols = ["AED - United Arab Emirates Dirham", "AFN - Afghan Afghani", "ALL - Albanian Lek", "AMD - Armenian Dram", "ANG - Netherlands Antillean Guilder", "AOA - Angolan Kwanza", "ARS - Argentine Peso", "AUD - Australian Dollar", "AWG - Aruban Florin", "AZN - Azerbaijani Manat", "BAM - Bosnia-Herzegovina Convertible Mark", "BBD - Barbadian Dollar", "BDT - Bangladeshi Taka", "BGN - Bulgarian Lev", "BHD - Bahraini Dinar", "BIF - Burundian Franc", "BMD - Bermudan Dollar", "BND - Brunei Dollar", "BOB - Bolivian Boliviano", "BRL - Brazilian Real", "BSD - Bahamian Dollar", "BTC - Bitcoin", "BTN - Bhutanese Ngultrum", "BWP - Botswanan Pula", "BYN - New Belarusian Ruble", "BYR - Belarusian Ruble", "BZD - Belize Dollar", "CAD - Canadian Dollar", "CDF - Congolese Franc", "CHF - Swiss Franc", "CLF - Chilean Unit of Account (UF)", "CLP - Chilean Peso", "CNY - Chinese Yuan", "COP - Colombian Peso", "CRC - Costa Rican Colón", "CUC - Cuban Convertible Peso", "CUP - Cuban Peso", "CVE - Cape Verdean Escudo", "CZK - Czech Republic Koruna", "DJF - Djiboutian Franc", "DKK - Danish Krone", "DOP - Dominican Peso", "DZD - Algerian Dinar", "EGP - Egyptian Pound", "ERN - Eritrean Nakfa", "ETB - Ethiopian Birr", "EUR - Euro", "FJD - Fijian Dollar", "FKP - Falkland Islands Pound", "GBP - British Pound Sterling", "GEL - Georgian Lari", "GGP - Guernsey Pound", "GHS - Ghanaian Cedi", "GIP - Gibraltar Pound", "GMD - Gambian Dalasi", "GNF - Guinean Franc", "GTQ - Guatemalan Quetzal", "GYD - Guyanaese Dollar", "HKD - Hong Kong Dollar", "HNL - Honduran Lempira", "HRK - Croatian Kuna", "HTG - Haitian Gourde", "HUF - Hungarian Forint", "IDR - Indonesian Rupiah", "ILS - Israeli New Sheqel", "IMP - Manx pound", "INR - Indian Rupee", "IQD - Iraqi Dinar", "IRR - Iranian Rial", "ISK - Icelandic Króna", "JEP - Jersey Pound", "JMD - Jamaican Dollar", "JOD - Jordanian Dinar", "JPY - Japanese Yen", "KES - Kenyan Shilling", "KGS - Kyrgystani Som", "KHR - Cambodian Riel", "KMF - Comorian Franc", "KPW - North Korean Won", "KRW - South Korean Won", "KWD - Kuwaiti Dinar", "KYD - Cayman Islands Dollar", "KZT - Kazakhstani Tenge", "LAK - Laotian Kip", "LBP - Lebanese Pound", "LKR - Sri Lankan Rupee", "LRD - Liberian Dollar", "LSL - Lesotho Loti", "LTL - Lithuanian Litas", "LVL - Latvian Lats", "LYD - Libyan Dinar", "MAD - Moroccan Dirham", "MDL - Moldovan Leu", "MGA - Malagasy Ariary", "MKD - Macedonian Denar", "MMK - Myanma Kyat", "MNT - Mongolian Tugrik", "MOP - Macanese Pataca", "MRO - Mauritanian Ouguiya", "MUR - Mauritian Rupee", "MVR - Maldivian Rufiyaa", "MWK - Malawian Kwacha", "MXN - Mexican Peso", "MYR - Malaysian Ringgit", "MZN - Mozambican Metical", "NAD - Namibian Dollar", "NGN - Nigerian Naira", "NIO - Nicaraguan Córdoba", "NOK - Norwegian Krone", "NPR - Nepalese Rupee", "NZD - New Zealand Dollar", "OMR - Omani Rial", "PAB - Panamanian Balboa", "PEN - Peruvian Nuevo Sol", "PGK - Papua New Guinean Kina", "PHP - Philippine Peso", "PKR - Pakistani Rupee", "PLN - Polish Zloty", "PYG - Paraguayan Guarani", "QAR - Qatari Rial", "RON - Romanian Leu", "RSD - Serbian Dinar", "RUB - Russian Ruble", "RWF - Rwandan Franc", "SAR - Saudi Riyal", "SBD - Solomon Islands Dollar", "SCR - Seychellois Rupee", "SDG - Sudanese Pound", "SEK - Swedish Krona", "SGD - Singapore Dollar", "SHP - Saint Helena Pound", "SLL - Sierra Leonean Leone", "SOS - Somali Shilling", "SRD - Surinamese Dollar", "STD - São Tomé and Príncipe Dobra", "SVC - Salvadoran Colón", "SYP - Syrian Pound", "SZL - Swazi Lilangeni", "THB - Thai Baht", "TJS - Tajikistani Somoni", "TMT - Turkmenistani Manat", "TND - Tunisian Dinar", "TOP - Tongan Paʻanga", "TRY - Turkish Lira", "TTD - Trinidad and Tobago Dollar", "TWD - New Taiwan Dollar", "TZS - Tanzanian Shilling", "UAH - Ukrainian Hryvnia", "UGX - Ugandan Shilling", "USD - United States Dollar", "UYU - Uruguayan Peso", "UZS - Uzbekistan Som", "VEF - Venezuelan Bolívar Fuerte", "VND - Vietnamese Dong", "VUV - Vanuatu Vatu", "WST - Samoan Tala", "XAF - CFA Franc BEAC", "XAG - Silver (troy ounce)", "XAU - Gold (troy ounce)", "XCD - East Caribbean Dollar", "XDR - Special Drawing Rights", "XOF - CFA Franc BCEAO", "XPF - CFP Franc", "YER - Yemeni Rial", "ZAR - South African Rand", "ZMK - Zambian Kwacha (pre-2013)", "ZMW - Zambian Kwacha", "ZWL - Zimbabwean Dollar"]
     
-    @Published var latestRatesModel: LatestRatesModel? = LatestRatesModel(base: "EUR", date: "2020-05-14", rates: ["AED": 3.14, "AFN": 14.3, "ALL": 23.4, "AMD": 2.2, "ANG": 6])
-    @Published var historicalRatesModel: HistoricalRatesModel? = HistoricalRatesModel(base: "USD", date: "2021-03-13", rates: ["AED": 3.14, "AFN": 14.3, "ALL": 23.4, "AMD": 2.2, "ANG": 6])
-    @Published var convertModels: [ConvertModel]? = [ConvertModel(query: ConvertModel.Query(from: "EUR", to: "GBP", amount: 2.3), info: ConvertModel.Info(rate: 3.6), date: "2019-02-26", result: 20.3), ConvertModel(query: ConvertModel.Query(from: "EUR", to: "GBP", amount: 2.4), info: ConvertModel.Info(rate: 3.7), date: "2019-02-24", result: 60.4), ConvertModel(query: ConvertModel.Query(from: "EUR", to: "GBP", amount: 2.5), info: ConvertModel.Info(rate: 3.8), date: "2019-02-25", result: 10.8)]
+    @Published var latestRatesModel: LatestRatesModel? = LatestRatesModel(base: "EUR", date: "2020-05-14", rates: ["AED": 3.67, "AFN": 89.50, "ALL": 113.05, "AMD": 445.64, "ANG": 1.80])
+    @Published var historicalRatesModel: HistoricalRatesModel? = HistoricalRatesModel(base: "EUR", date: "2022-05-24", rates: ["AED": 3.67, "AFN": 89.50, "ALL": 113.05, "AMD": 445.64, "ANG": 1.80])
+    @Published var convertModels: [ConvertModel]? = [ConvertModel(query: ConvertModel.Query(from: "EUR", to: "JPY", amount: 25), info: ConvertModel.Info(rate: 138.654), date: "2022-05-24", result: 3466.35), ConvertModel(query: ConvertModel.Query(from: "EUR", to: "JPY", amount: 25), info: ConvertModel.Info(rate: 150.0), date: "2022-05-25", result: 3750.0), ConvertModel(query: ConvertModel.Query(from: "EUR", to: "JPY", amount: 25), info: ConvertModel.Info(rate: 130.0), date: "2022-05-26", result: 3250)]
     
     // ContentView
     @Published var showInfoView: Bool = false
@@ -48,6 +48,9 @@ class ChartViewModel: ObservableObject {
     @Published var showContentView: Bool = false
     
     @Published var searchText: String = ""
+    
+    @Published var barChartData: BarChartData? = nil
+    @Published var lineChartData: LineChartData? = nil
     
     var searchResults: [String] {
         if !searchText.isEmpty {
@@ -142,7 +145,73 @@ class ChartViewModel: ObservableObject {
         }
     }
     
-    func prepareConvertChartData() -> LineChartData {
+    func prepareLatestRatesAndHistoricalRatesChartData() {
+        var data = BarDataSet(
+            dataPoints: [BarChartDataPoint]())
+
+        if apiCallType == .latestRates {
+            for key in Array(latestRatesModel!.rates.keys) {
+                data.dataPoints.append(BarChartDataPoint(value: latestRatesModel!.rates[key]!, xAxisLabel: key))
+            }
+        } else {
+            for key in Array(historicalRatesModel!.rates.keys) {
+                data.dataPoints.append(BarChartDataPoint(value: historicalRatesModel!.rates[key]!, xAxisLabel: key))
+            }
+        }
+        
+        let gridStyle  = GridStyle(
+            numberOfLines: apiCallType == .latestRates ? latestRatesModel!.rates.count : historicalRatesModel!.rates.count,
+            lineColour: Color(.lightGray).opacity(0.5)
+        )
+        
+        let barStyle = BarStyle(
+            barWidth: 0.8,
+            cornerRadius: CornerRadius(topLeft: 10,
+                                       topRight: 10,
+                                       bottomLeft: 10,
+                                       bottomRight: 10),
+            colour: ColourStyle(colour: .accentColor))
+        
+        let barChartStyle = BarChartStyle(
+            infoBoxPlacement: .infoBox(isStatic: false),
+            infoBoxValueColour: Color.primary,
+            infoBoxBorderStyle: StrokeStyle(lineWidth: 1),
+            xAxisGridStyle: gridStyle,
+            xAxisLabelPosition: .bottom,
+            xAxisLabelColour: .accentColor,
+            xAxisLabelsFrom: .chartData(rotation: Angle(degrees: 0)),
+            xAxisTitle: "Currency",
+            xAxisTitleFont: Font(CTFont(.system, size: 15)).bold(),
+            yAxisGridStyle: gridStyle,
+            yAxisLabelPosition: .leading,
+            yAxisLabelColour: .accentColor,
+            yAxisNumberOfLabels: apiCallType == .latestRates ? latestRatesModel!.rates.count : historicalRatesModel!.rates.count,
+            yAxisTitle: "Values",
+            yAxisTitleFont: Font(CTFont(.system, size: 15)).bold(),
+            baseline: .minimumValue,
+            topLine: .maximumValue,
+            globalAnimation: .easeOut(duration: 2))
+
+        var yAxisLabels = [String]()
+        if apiCallType == .latestRates {
+            for value in Array(latestRatesModel!.rates.values) {
+                yAxisLabels.append(String(value))
+            }
+        } else {
+            for value in Array(historicalRatesModel!.rates.values) {
+                yAxisLabels.append(String(value))
+            }
+        }
+        
+        barChartData = BarChartData(
+            dataSets: data,
+            xAxisLabels: apiCallType == .latestRates ? Array(latestRatesModel!.rates.keys) : Array(historicalRatesModel!.rates.keys),
+            yAxisLabels: yAxisLabels,
+            barStyle: barStyle,
+            chartStyle: barChartStyle)
+    }
+    
+    func prepareConvertChartData() {
         var data = LineDataSet(
             dataPoints: [LineChartDataPoint](),
             legendTitle: "value",
@@ -151,19 +220,14 @@ class ChartViewModel: ObservableObject {
                              lineType: .curvedLine)
         )
 
+        var xAxisLabels = [String]()
         for convertModel in convertModels! {
             data.dataPoints.append(LineChartDataPoint(value: convertModel.result, xAxisLabel: convertModel.date, description: convertModel.date))
+            xAxisLabels.append(convertModel.date)
         }
         
-        let metadata = ChartMetadata(
-            title: "Conversion Values",
-            subtitle: "Over Days",
-            titleFont: Font(CTFont(.system, size: 30)).bold(),
-            subtitleFont: Font(CTFont(.system, size: 20))
-        )
-        
         let gridStyle  = GridStyle(
-            numberOfLines: convertModels!.count + 1,
+            numberOfLines: convertModels!.count + 3,
             lineColour: Color(.lightGray).opacity(0.5)
         )
         
@@ -180,7 +244,7 @@ class ChartViewModel: ObservableObject {
             yAxisGridStyle: gridStyle,
             yAxisLabelPosition: .leading,
             yAxisLabelColour: .accentColor,
-            yAxisNumberOfLabels: convertModels!.count + 1,
+            yAxisNumberOfLabels: convertModels!.count + 3,
             yAxisTitle: "Values",
             yAxisTitleFont: Font(CTFont(.system, size: 15)).bold(),
             baseline: .minimumValue,
@@ -188,9 +252,9 @@ class ChartViewModel: ObservableObject {
             globalAnimation: .easeOut(duration: 2)
         )
         
-        return LineChartData(
+        lineChartData = LineChartData(
             dataSets: data,
-            metadata: metadata,
+            xAxisLabels: xAxisLabels,
             chartStyle: chartStyle
         )
     }

@@ -17,8 +17,8 @@ iOS app to generate charts based on various currencies exchanges rates
 ## Technologies
 * Swift 5 [SwiftUI]    
 * Xcode 13  
-* Fixer Currency API - Custom API to get currency exchange information: https://rapidapi.com/fixer/api/fixer-currency/details
-* SwiftUICharts - Package to generate charts based on provided data: https://github.com/willdale/SwiftUICharts
+* [Fixer Currency API](https://rapidapi.com/fixer/api/fixer-currency/details) - Custom API to get currency exchange information
+* [SwiftUICharts](https://github.com/willdale/SwiftUICharts) - Package to generate charts based on provided data
 
 
 ## Status

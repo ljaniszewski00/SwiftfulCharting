@@ -30,9 +30,9 @@ Any device supporting newest version of iOS
 
 
 ## Functionalities
-* see exchange rates for various currencies
-* convert any amount of one currency to another
-* see beautiful charts regarding exchange data
+* See exchange rates for various currencies
+* Convert any amount of one currency to another
+* See beautiful charts regarding exchange data
 
 
 ## Preview Video

@@ -26,7 +26,7 @@ Finished
 
 
 ## Requirements
-Any Apple device newest version of iOS
+Any device supporting newest version of iOS
 
 
 ## Functionalities

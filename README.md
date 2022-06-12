@@ -36,4 +36,4 @@ Any device supporting newest version of iOS
 
 
 ## Preview Video
-https://user-images.githubusercontent.com/78795431/173193636-aa746fbe-f27d-44ce-8db0-9437b67dbb6f.mp4
+https://user-images.githubusercontent.com/78795431/173231810-b3598126-a695-4348-96d0-df96f1184f1d.mov
